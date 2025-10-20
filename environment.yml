@@ -3,10 +3,9 @@ dependencies:
   - python=3.11
   - pip
   - pip:
-      - --extra-index-url https://download.pytorch.org/whl/cu128
-      - torch==2.7.0+cu128
-      - torchvision==0.22.0+cu128
-      - torchaudio==2.7.0+cu128
+      - torch==2.7.0
+      - torchvision==0.22.0
+      - torchaudio==2.7.0
       - mujoco==3.2.6
       - numpy
       - pyyaml

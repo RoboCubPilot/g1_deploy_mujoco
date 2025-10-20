@@ -23,6 +23,8 @@ A sample G1 29-DoF walking policy (`checkpoint/policy.pt`) is provided for testi
 
 ## 🛠️ 步骤（中文版）
 
+**macOS**: Use `mjpython` instead of `python` to run the simulation
+
 1. 参考 [unitree_rl_lab](https://github.com/unitreerobotics/unitree_rl_lab) ，训练出 **29-DoF Unitree G1** 行走策略并导出`exported/policy.pt`
 
 2. 克隆本仓库：
@@ -51,6 +53,8 @@ A sample G1 29-DoF walking policy (`checkpoint/policy.pt`) is provided for testi
    + `EXPORTED_PATH`: 导出模型保存路径（默认：`./exported/`），也可以指定为任意自定义目录.   
 
 ## 🛠️ Steps (in English)
+
+**macOS**: Use `mjpython` instead of `python` to run the simulation
 
 1. **Train a policy**  
    Train the **29-DoF Unitree G1** locomotion policy in [unitree_rl_lab](https://github.com/unitreerobotics/unitree_rl_lab) and export 
