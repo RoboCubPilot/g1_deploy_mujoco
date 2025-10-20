@@ -38,6 +38,15 @@ A sample G1 29-DoF walking policy (`checkpoint/policy.pt`) is provided for testi
    ```bash
    python deploy_mujoco.py --policy YOUR_POLICY_PATH
    ```
+   方向/转向命令与日志（可选）：
+   ```bash
+   # 前进
+   python deploy_mujoco.py --cmd 0.5 0 0
+   # 左移
+   python deploy_mujoco.py --cmd 0 0.5 0
+   # 打印线速度与高度
+   python deploy_mujoco.py --cmd 0.5 0 0 --log-vel
+   ```
 5. （可选）如需将 JIT 格式策略转换为 ONNX 格式：
    ```bash
    python scripts/convert_jit_to_onnx.py --jit-path YOUR_POLICY_PATH --onnx-path OUTPUT_ONNX_PATH
@@ -73,6 +82,15 @@ A sample G1 29-DoF walking policy (`checkpoint/policy.pt`) is provided for testi
    Launch Sim2Sim in Mujoco with the default policy path `checkpoint/policy.pt`:
    ```bash
    python deploy_mujoco.py --policy YOUR_POLICY_PATH
+   ```
+   Directional commands and logging (optional):
+   ```bash
+   # Forward
+   python deploy_mujoco.py --cmd 0.5 0 0
+   # Left
+   python deploy_mujoco.py --cmd 0 0.5 0
+   # Print linear velocity and height
+   python deploy_mujoco.py --cmd 0.5 0 0 --log-vel
    ```
 
 5. **(Optional) Convert JIT → ONNX**  
