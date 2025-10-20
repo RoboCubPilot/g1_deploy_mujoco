@@ -31,6 +31,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='g1 deploy mujoco')
     parser.add_argument('--policy', type=str, default="checkpoint/policy.pt",
                        help='Direct path to policy file (overrides config file)')
+    parser.add_argument('--cmd', type=float, nargs=3, default=None,
+                       help='Override desired command [vx vy yaw]')
+    parser.add_argument('--log-vel', action='store_true',
+                       help='Print base linear velocity (m/s) and base height (m) at control updates')
     
     args = parser.parse_args()
     
@@ -68,7 +72,10 @@ if __name__ == "__main__":
         num_actions = config["num_actions"]
         num_obs = config["num_obs"]
         
-        cmd = np.array(config["cmd_init"], dtype=np.float32)
+        if args.cmd is not None:
+            cmd = np.array(args.cmd, dtype=np.float32)
+        else:
+            cmd = np.array(config["cmd_init"], dtype=np.float32)
 
     # define context variables
     action = np.zeros(num_actions, dtype=np.float32)
@@ -163,6 +170,11 @@ if __name__ == "__main__":
                 action = action[policy_to_xml]
                 # transform action to target_dof_pos
                 target_dof_pos = action * action_scale + default_angles
+
+                if args.log_vel:
+                    base_lin_vel = d.qvel[0:3]
+                    base_height = d.qpos[2]
+                    print(f"vel: [{base_lin_vel[0]:+.3f}, {base_lin_vel[1]:+.3f}, {base_lin_vel[2]:+.3f}] m/s, height: {base_height:.3f} m, cmd: [{cmd[0]:.2f}, {cmd[1]:.2f}, {cmd[2]:.2f}]")
 
             # Pick up changes to the physics state, apply perturbations, update options from GUI.
             viewer.sync()
